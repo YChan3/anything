@@ -1,7 +1,7 @@
 # anything
-Yin On (Derek) Chan and Larry Wong
+Yin On (Derek) Chan and Larry Wong  
 spook
 ## features
-Gouraud Shading
-Phong Shading
+Gouraud Shading  
+Phong Shading  
 .obj Mesh
