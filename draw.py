@@ -49,6 +49,10 @@ def draw_scanline(x0, z0, x1, z1, y, screen, zbuffer, color, shading, ends, view
         if shading == 'gouraud':
             gcolor = [ int(xr), int(yg), int(zb)]
             plot(screen, zbuffer, gcolor, x, y, z)
+        if shading == 'phong':
+            pixel_norm = [ xr, yg, zb ]
+            pcolor = get_lighting(pixel_norm, view, ambient, light, symbols, reflect )
+            plot(screen, zbuffer, pcolor, x, y, z)
 
         x+= 1
         z+= delta_z
@@ -177,6 +181,14 @@ def draw_polygons( polygons, screen, zbuffer, shading, view, ambient, light, sym
                 scanline_convert(polygons, point, screen, zbuffer, colors, 
                         shading, view, ambient, light, symbols, reflect)
 
+            if shading == 'phong':
+                v0_norm = norms[tuple(polygons[point])]
+                v1_norm = norms[tuple(polygons[point+1])]
+                v2_norm = norms[tuple(polygons[point+2])]
+                
+                normals = [v0_norm, v1_norm, v2_norm]
+                scanline_convert(polygons, point, screen, zbuffer, normals, 
+                        shading, view, ambient, light, symbols, reflect)
             # draw_line( int(polygons[point][0]),
             #            int(polygons[point][1]),
             #            polygons[point][2],

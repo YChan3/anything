@@ -104,7 +104,7 @@ def run(filename):
     (name, num_frames, shading) = first_pass(commands)
     frames = second_pass(commands, num_frames)
 
-    step_3d = 10
+    step_3d = 100
     ctr = 0
 
     for frame in frames:
