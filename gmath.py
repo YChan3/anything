@@ -116,3 +116,24 @@ def calculate_normal(polygons, i):
     N[2] = A[0] * B[1] - A[1] * B[0]
 
     return N
+
+# average of norms
+def avg_norms(norms):
+    n = len(norms)
+    avg = [0,0,0]
+    for norm in norms:
+        avg[0] += norm[0]
+        avg[1] += norm[1]
+        avg[2] += norm[2]
+    normalize(avg)
+    return avg
+
+def const_multi(const, vec):
+    return [const*x for x in vec]
+
+def vect_add(vec1,vec2):
+    vec1[0] += vec2[0]
+    vec1[1] += vec2[1]
+    vec1[2] += vec2[2]
+    return vec1
+

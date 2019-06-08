@@ -22,6 +22,7 @@ from draw import *
 def first_pass( commands ):
 
     name = 'default'
+    shading = 'flat'
     num_frames = 1
     has_frames = False
     has_vary = False
@@ -33,9 +34,11 @@ def first_pass( commands ):
             name = c['args'][0]
         if c['op'] == 'vary':
             has_vary = True
+        if c['op'] == 'shading':
+            shading = c['shade_type']
     if not has_frames and has_vary:
         exit()
-    return (name, num_frames)
+    return (name, num_frames, shading)
 
 """======== second_pass( commands ) ==========
 
@@ -98,13 +101,14 @@ def run(filename):
                           'blue': [0.2, 0.5, 0.5]}]
     reflect = '.white'
 
-    (name, num_frames) = first_pass(commands)
+    (name, num_frames, shading) = first_pass(commands)
     frames = second_pass(commands, num_frames)
 
-    step_3d = 100
+    step_3d = 10
     ctr = 0
 
     for frame in frames:
+        print(shading)
         tmp = new_matrix()
         ident( tmp )
         stack = [ [x[:] for x in tmp] ]
@@ -131,7 +135,7 @@ def run(filename):
                         args[0], args[1], args[2],
                         args[3], args[4], args[5])
                 matrix_mult( stack[-1], tmp )
-                draw_polygons(tmp, screen, zbuffer, view, ambient, light, symbols, reflect)
+                draw_polygons(tmp, screen, zbuffer, shading, view, ambient, light, symbols, reflect)
                 tmp = []
                 reflect = '.white'
             elif c == 'sphere':
@@ -140,7 +144,7 @@ def run(filename):
                 add_sphere(tmp,
                            args[0], args[1], args[2], args[3], step_3d)
                 matrix_mult( stack[-1], tmp )
-                draw_polygons(tmp, screen, zbuffer, view, ambient, light, symbols, reflect)
+                draw_polygons(tmp, screen, zbuffer, shading, view, ambient, light, symbols, reflect)
                 tmp = []
                 reflect = '.white'
             elif c == 'torus':
@@ -149,7 +153,7 @@ def run(filename):
                 add_torus(tmp,
                           args[0], args[1], args[2], args[3], args[4], step_3d)
                 matrix_mult( stack[-1], tmp )
-                draw_polygons(tmp, screen, zbuffer, view, ambient, light, symbols, reflect)
+                draw_polygons(tmp, screen, zbuffer, shading, view, ambient, light, symbols, reflect)
                 tmp = []
                 reflect = '.white'
             elif c == 'line':
