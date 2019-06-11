@@ -6,6 +6,7 @@ shading phong
 // shading gouraud
 // shading flat
 push
+scale 10 10 10
 mesh shiny_teal :test.obj
 display
 save face.png

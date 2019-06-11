@@ -76,7 +76,7 @@ def display( screen ):
 def make_animation( name ):
     name_arg = 'anim/' + name + '*'
     name = name + '.gif'
-    print 'Saving animation as ' + name
+    print ('Saving animation as ' + name)
     f = os.fork()
     if f == 0:
         os.execlp('convert', 'convert', '-delay', '10', name_arg, name)
