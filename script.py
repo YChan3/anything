@@ -124,6 +124,7 @@ def run(filename):
         	symbols[k][1] = frame[k]
 
         for command in commands:
+            print(command)
             c = command['op']
             args = command['args']
             knob_value = 1
@@ -138,6 +139,15 @@ def run(filename):
                 draw_polygons(tmp, screen, zbuffer, shading, view, ambient, light, symbols, reflect)
                 tmp = []
                 reflect = '.white'
+            elif c == 'mesh':
+                print("==============================")
+                if command['constants']:
+                    reflect = command['constants']
+                # print(args)
+                parse_mesh(tmp,args[0])
+                matrix_mult( stack[-1], tmp )
+                draw_polygons(tmp, screen, zbuffer, shading, view, ambient, light, symbols, reflect)
+                tmp = []
             elif c == 'sphere':
                 if command['constants']:
                     reflect = command['constants']

@@ -2,6 +2,47 @@ from display import *
 from matrix import *
 from gmath import *
 
+def parse_mesh(polygons,filename):
+    verticies = []
+    faces = []
+    f = open(str(filename), "r")
+    lines = f.read().split("\n")
+    for line in lines:
+        l = line.split(" ")
+        l = [x for x in l if x != "" and x != " "]
+        if l[0] == 'v':
+            theList = []
+            for i in range(1,len(l)):
+                theList.append(l[i])
+            verticies.append(theList)
+        elif l[0] == 'f':
+            theList = []
+            list2 = []
+
+            theList.append(l[1])
+            theList.append(l[2])
+            theList.append(l[3])
+            faces.append(theList)
+
+            if len(l) == 5:
+                list2.append(l[1])
+                list2.append(l[3])
+                list2.append(l[4])
+                faces.append(list2)
+
+    print verticies
+    print faces
+
+    for face in faces:
+        points = []
+        for vertex in range(3):
+            points.append(float(verticies[int(face[vertex])-1][0]))
+            points.append(float(verticies[int(face[vertex])-1][1]))
+            points.append(float(verticies[int(face[vertex])-1][2]))
+        add_polygon(polygons, points[0], points[1], points[2],
+                              points[3], points[4], points[5],
+                              points[6], points[7], points[8],)
+
 def dict_nom(polygons):
     vnormals = {}
     point = 0
@@ -38,11 +79,11 @@ def draw_scanline(x0, z0, x1, z1, y, screen, zbuffer, color, shading, ends, view
     if shading != 'flat':
         xr = ends[0][0]
         yg = ends[0][1]
-        zb = ends[0][2] 
+        zb = ends[0][2]
         dxr = (ends[1][0] - ends[0][0]) / distance if distance != 0 else 0
         dyg = (ends[1][1] - ends[0][1]) / distance if distance != 0 else 0
         dzb = (ends[1][2] - ends[0][2]) / distance if distance != 0 else 0
-    
+
     while x <= x1:
         if shading == 'flat':
             plot(screen, zbuffer, color, x, y, z)
@@ -133,7 +174,7 @@ def scanline_convert(polygons, i, screen, zbuffer, intras, shading, view, ambien
         x1+= dx1
         z1+= dz1
         y+= 1
-        
+
         if shading != 'flat':
             xr0 += dxr0
             yg0 += dyg0
@@ -167,7 +208,7 @@ def draw_polygons( polygons, screen, zbuffer, shading, view, ambient, light, sym
             if shading == 'flat':
                 color = get_lighting(normal, view, ambient, light, symbols, reflect )
                 colors = [color,color,color]
-                scanline_convert(polygons, point, screen, zbuffer, colors, 
+                scanline_convert(polygons, point, screen, zbuffer, colors,
                         shading, view, ambient, light, symbols, reflect)
             if shading == 'gouraud':
                 v0_norm = norms[tuple(polygons[point])]
@@ -179,16 +220,16 @@ def draw_polygons( polygons, screen, zbuffer, shading, view, ambient, light, sym
                 v2_color = get_lighting(v2_norm, view, ambient, light, symbols, reflect )
 
                 colors = [v0_color, v1_color, v2_color]
-                scanline_convert(polygons, point, screen, zbuffer, colors, 
+                scanline_convert(polygons, point, screen, zbuffer, colors,
                         shading, view, ambient, light, symbols, reflect)
 
             if shading == 'phong':
                 v0_norm = norms[tuple(polygons[point])]
                 v1_norm = norms[tuple(polygons[point+1])]
                 v2_norm = norms[tuple(polygons[point+2])]
-                
+
                 normals = [v0_norm, v1_norm, v2_norm]
-                scanline_convert(polygons, point, screen, zbuffer, normals, 
+                scanline_convert(polygons, point, screen, zbuffer, normals,
                         shading, view, ambient, light, symbols, reflect)
             # draw_line( int(polygons[point][0]),
             #            int(polygons[point][1]),
