@@ -51,6 +51,7 @@ def draw_scanline(x0, z0, x1, z1, y, screen, zbuffer, color, shading, ends, view
             plot(screen, zbuffer, gcolor, x, y, z)
         if shading == 'phong':
             pixel_norm = [ xr, yg, zb ]
+            normalize(pixel_norm)
             pcolor = get_lighting(pixel_norm, view, ambient, light, symbols, reflect )
             plot(screen, zbuffer, pcolor, x, y, z)
 
