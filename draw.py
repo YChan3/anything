@@ -10,25 +10,27 @@ def parse_mesh(polygons,filename):
     for line in lines:
         l = line.split(" ")
         l = [x for x in l if x != "" and x != " "]
-        if l[0] == 'v':
-            theList = []
-            for i in range(1,len(l)):
-                theList.append(l[i])
-            verticies.append(theList)
-        elif l[0] == 'f':
-            theList = []
-            list2 = []
+        print(l)
+        if l != []:
+            if l[0] == 'v':
+                theList = []
+                for i in range(1,len(l)):
+                    theList.append(l[i])
+                verticies.append(theList)
+            elif l[0] == 'f':
+                theList = []
+                list2 = []
 
-            theList.append(l[1])
-            theList.append(l[2])
-            theList.append(l[3])
-            faces.append(theList)
+                theList.append(l[1])
+                theList.append(l[2])
+                theList.append(l[3])
+                faces.append(theList)
 
-            if len(l) == 5:
-                list2.append(l[1])
-                list2.append(l[3])
-                list2.append(l[4])
-                faces.append(list2)
+                if len(l) == 5:
+                    list2.append(l[1])
+                    list2.append(l[3])
+                    list2.append(l[4])
+                    faces.append(list2)
 
     print verticies
     print faces
