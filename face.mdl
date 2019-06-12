@@ -8,6 +8,7 @@ shading phong
 push
 move 250 250 0
 scale 50 50 50
+rotate y 15
 mesh shiny_teal :sanic.obj
 display
 save face.png
