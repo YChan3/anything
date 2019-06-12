@@ -18,9 +18,8 @@ def parse_mesh(polygons,filename):
                     theList.append(l[i])
                 verticies.append(theList)
             elif l[0] == 'f':
-                theList = []
-                print(l)
                 for c in range(2, len(l)-1):
+                    theList = []
                     theList.append(l[1])
                     theList.append(l[c])
                     theList.append(l[c+1])
