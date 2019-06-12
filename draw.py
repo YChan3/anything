@@ -23,7 +23,6 @@ def parse_mesh(polygons,filename):
                     theList.append(l[1])
                     theList.append(l[c])
                     theList.append(l[c+1])
-                    print(theList)
                     faces.append(theList)
 
     # print (verticies)
