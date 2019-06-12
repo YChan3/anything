@@ -7,7 +7,8 @@ shading phong
 // shading flat
 push
 move 250 150 0
-rotate y 15
+rotate y 45
+rotate x 10
 mesh shiny_teal :al.obj
 push
 rotate y 15
