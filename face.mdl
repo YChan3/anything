@@ -2,6 +2,7 @@
 constants shiny_purple 0.3 0.2 0.8 0.3 0 0 0.3 0.2 0.8
 constants shiny_teal 0.3 0.0 0.0 0.3 0.2 0.8 0.3 0.2 0.8
 constants dull_yellow 0.3 0.8 0.2 0.3 0.8 0.2 0 0 0
+constants brown 0.2 0.7 0.4 0.1 0.4 0.3 0 0 0
 shading phong
 // shading gouraud
 // shading flat
@@ -9,7 +10,7 @@ push
 move 250 150 0
 rotate y 45
 rotate x 10
-mesh dull_yellow :al.obj
+mesh brown :al.obj
 push
 rotate y 15
 display
