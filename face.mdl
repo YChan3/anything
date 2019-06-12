@@ -8,7 +8,7 @@ shading phong
 push
 move 250 250 0
 scale 50 50 50
-mesh shiny_teal :sanic.obj
+mesh shiny_teal :al.obj
 push
 rotate y 15
 display
