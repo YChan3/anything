@@ -19,14 +19,15 @@ def parse_mesh(polygons,filename):
                 verticies.append(theList)
             elif l[0] == 'f':
                 theList = []
+                print(l)
                 for c in range(2, len(l)-1):
                     theList.append(l[1])
                     theList.append(l[c])
                     theList.append(l[c+1])
                     faces.append(theList)
 
-    print (verticies)
-    print (faces)
+    # print (verticies)
+    # print (faces)
 
     for face in faces:
         points = []
