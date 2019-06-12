@@ -9,6 +9,6 @@ push
 move 250 250 0
 scale 75 75 75
 
-mesh shiny_teal :al.obj
+mesh shiny_teal :sanic.obj
 display
 save face.png
