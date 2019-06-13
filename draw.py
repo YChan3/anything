@@ -13,17 +13,17 @@ def parse_mesh(polygons,filename):
         print(l)
         if l != []:
             if l[0] == 'v':
-                theList = []
+                temp = []
                 for i in range(1,len(l)):
-                    theList.append(l[i])
-                verticies.append(theList)
+                    temp.append(l[i])
+                verticies.append(temp)
             elif l[0] == 'f':
                 for c in range(2, len(l)-1):
-                    theList = []
-                    theList.append(l[1])
-                    theList.append(l[c])
-                    theList.append(l[c+1])
-                    faces.append(theList)
+                    temp = []
+                    temp.append(l[1])
+                    temp.append(l[c])
+                    temp.append(l[c+1])
+                    faces.append(temp)
 
     # print (verticies)
     # print (faces)
