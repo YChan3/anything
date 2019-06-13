@@ -11,7 +11,7 @@ push
 move 250 300 0
 rotate x 270
 rotate y 3
-rotate x 45
+rotate z 45
 scale 6 6 6
 mesh dull_yellow :hat.obj
 pop
