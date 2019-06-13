@@ -16,8 +16,8 @@ scale 6 6 6
 mesh dull_yellow :hat.obj
 pop
 move 250 70 0
-rotate 45
-rotate 10
+rotate y 45
+rotate x 10
 mesh brown: boots.obj
 push
 rotate y 15
