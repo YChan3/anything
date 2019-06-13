@@ -1,6 +1,6 @@
 # anything
 Yin On (Derek) Chan and Larry Wong  
-spook
+TEAM spook
 ## features
 Gouraud Shading  
 Phong Shading  
