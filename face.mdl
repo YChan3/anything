@@ -18,12 +18,12 @@ pop
 move 250 70 0
 rotate y 45
 rotate x 10
-mesh brown: boots.obj
+mesh brown :boots.obj
 push
 rotate y 15
 pop
 rotate y 10
-move -200 0 50
+move -200 0 250
 box white 0 0 0 700 500 500
 display
 save face.png
